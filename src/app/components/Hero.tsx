@@ -1,3 +1,4 @@
+import MagicButton from "./MagicButton";
 import { Spotlight } from "./ui/spotlight";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 
@@ -6,7 +7,7 @@ export default function Hero() {
     <div className="pb-20 pt-36">
       <div>
         <Spotlight
-          className="top-40 -left-10 md:-left-32 md:-top-20 h-screen"
+          className="top-40 +left-10 md:-left-32 md:-top-20 h-screen"
           fill="white"
         />
         <Spotlight
@@ -23,13 +24,21 @@ export default function Hero() {
         <div className="flex justify-center relative z-10 my-10">
             <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[80vw] flex flex-col items-center justify-center">
                 <h1 className="uppercase tracking-widest  text-xs text-center text-yellow-200 max-w-80">
-                Not A Particular language devloper but a software engineer
+                Not A Particular language devloper but a software Developer
                 </h1>
                 <TextGenerateEffect
-                    words="Transforming ideas into reality" 
-                    className="text-3xl text-center text-[40px] md:text-5xl lg:text-6xl"
+                    words="Transforming Concept Into seamless Experience" 
+                    className="text-center text-[40px] md:text-5xl lg:text-6xl"
                     
                 />
+                <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-xl">
+                  Hey I&apos;m Pankaj, a softwere devloper
+                  based in INDIA
+                </p>
+                <a href="#about"><MagicButton
+                
+                />
+                  </a>
 
             </div>
         </div>
