@@ -1,11 +1,12 @@
 import React from 'react'
 import { BentoGrid, BentoGridItem } from './ui/bento-grid'
-import { gridItems } from '../../../../data/index'  // Fix import path
+import { gridItems } from '../../../../data/index'  
+import { cn } from "../lib/utils";
 function Grid() {
   return (
-    <section id='#about'>
+    <section id='about'>
         <BentoGrid>
-            {gridItems.map((item:any) => (
+            {gridItems.map((item) => (
                 <BentoGridItem id={item.id}
                  key={item.id}
                  title={item.title}
@@ -15,7 +16,7 @@ function Grid() {
                  imgClassName={item.imgClassName}
                  titleClassName={item.titleClassName}
                  spareImg={item.spareImg}
-                  />
+                />
             ))}
         </BentoGrid>
     </section>
