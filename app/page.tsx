@@ -190,6 +190,27 @@ export default function Home() {
               </div>
             </article>
 
+            {/* Book Reader */}
+            <article className="p-5 rounded-xl border border-border bg-card/50 hover:bg-card hover:border-foreground/20 transition-all duration-300 group flex flex-col">
+              <div className="flex items-start justify-between gap-4 mb-3">
+                <h3 className="font-medium">Book Reader</h3>
+                <a href="https://reader.itzpankaj.site" target="_blank" rel="noopener noreferrer"
+                  className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-full transition-all"
+                  aria-label="Visit Book Reader"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+                </a>
+              </div>
+              <p className="text-muted-foreground/80 text-sm leading-relaxed mb-4 grow">
+                A simple book reader app built with Next.js, Tailwind CSS, TypeScript and Pdf-libs.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-2 py-1 text-[10px] font-medium rounded-md bg-muted text-muted-foreground">Next.js</span>
+                <span className="px-2 py-1 text-[10px] font-medium rounded-md bg-muted text-muted-foreground">Tailwind CSS</span>
+                <span className="px-2 py-1 text-[10px] font-medium rounded-md bg-muted text-muted-foreground">TypeScript</span>
+              </div>
+            </article>
+
             {/* Motivation Kaksha */}
             <article className="p-5 rounded-xl border border-border bg-card/50 hover:bg-card hover:border-foreground/20 transition-all duration-300 group flex flex-col">
               <div className="flex items-start justify-between gap-4 mb-3">
