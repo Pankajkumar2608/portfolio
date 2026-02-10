@@ -5,10 +5,14 @@ const techStack = [
   { name: "React", color: "#61dafb" },
   { name: "Next.js", color: "#888" },
   { name: "Node.js", color: "#339933" },
+  { name: "Kotlin", color: "#7f52ff" },
   { name: "Python", color: "#3776ab" },
   { name: "PostgreSQL", color: "#4169e1" },
   { name: "Redis", color: "#dc382d" },
   { name: "Rust", color: "#ce422b" },
+  { name: "AWS", color: "#ff9900" },
+  { name: "GCP", color: "#4285f4" },
+  { name: "Docker", color: "#2496ed" },
 ];
 
 export function Hero() {
