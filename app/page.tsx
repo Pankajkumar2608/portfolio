@@ -2,8 +2,10 @@ import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { Experience } from "@/components/experience";
 import { Projects } from "@/components/projects";
+import { Skills } from "@/components/skills";
 import { GitHubActivity } from "@/components/github-activity-section";
 import { Direction } from "@/components/direction";
+import { ContactCTA } from "@/components/contact-cta";
 import { SiteFooter } from "@/components/site-footer";
 import { CursorGlow } from "@/components/cursor-glow";
 
@@ -12,12 +14,14 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <CursorGlow />
       <Nav />
-      <main className="max-w-2xl mx-auto px-6 pt-36 pb-24">
+      <main className="max-w-4xl mx-auto px-6 pt-32 pb-24">
         <Hero />
         <Experience />
         <Projects />
+        <Skills />
         <GitHubActivity />
         <Direction />
+        <ContactCTA />
         <SiteFooter />
       </main>
     </div>

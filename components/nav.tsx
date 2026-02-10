@@ -5,9 +5,10 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "#projects", label: "Work" },
+  { href: "#experience", label: "Work" },
+  { href: "#projects", label: "Projects" },
+  { href: "#skills", label: "Skills" },
   { href: "#github", label: "GitHub" },
-  { href: "#about", label: "About" },
 ];
 
 export function Nav() {
@@ -23,31 +24,32 @@ export function Nav() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm shadow-background/5"
+          ? "bg-background/80 backdrop-blur-xl border-b border-border/50"
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-2xl mx-auto px-6 h-14 flex items-center justify-between">
+      <nav className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
         <a href="#" className="block shrink-0 group" aria-label="Back to top">
           <Image
             src="/avatar.jpg"
             alt="Pankaj Kumar"
-            width={30}
-            height={30}
-            className="rounded-full transition-transform duration-200 group-hover:scale-105"
+            width={28}
+            height={28}
+            className="rounded-full ring-1 ring-border/60 transition-transform duration-200 group-hover:scale-110"
             priority
           />
         </a>
-        <div className="flex items-center gap-5 sm:gap-6">
+        <div className="flex items-center gap-1 sm:gap-2">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+              className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/60 rounded-md transition-all duration-200"
             >
               {link.label}
             </a>
           ))}
+          <div className="w-px h-5 bg-border mx-1" />
           <ThemeToggle />
         </div>
       </nav>
