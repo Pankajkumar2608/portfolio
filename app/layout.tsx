@@ -1,28 +1,46 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
-const geistSans = Geist({
+const _geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const _geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "Pankaj Kumar — Software Engineer",
-  description: "Building systems that think clearly. Focused on depth, correctness, and fundamentals.",
-  keywords: ["software engineer", "systems thinking", "Rust", "C", "Web3", "full stack developer"],
+  description:
+    "Building systems that think clearly. Full-stack developer focused on correctness, distributed systems, and low-level architecture.",
+  keywords: [
+    "software engineer",
+    "full stack developer",
+    "systems thinking",
+    "Rust",
+    "TypeScript",
+    "Next.js",
+    "distributed systems",
+  ],
   authors: [{ name: "Pankaj Kumar" }],
   openGraph: {
     title: "Pankaj Kumar — Software Engineer",
     description: "Building systems that think clearly.",
     type: "website",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8f7f4" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c0c0c" },
+  ],
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -33,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+        className={`${_geistSans.variable} ${_geistMono.variable} antialiased min-h-screen`}
       >
         <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
           {children}

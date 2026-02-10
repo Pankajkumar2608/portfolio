@@ -43,13 +43,12 @@ export function GitHubContributionGraph({ username }: { username: string }) {
 
     // Color mappings
     const getLevelColor = (level: number) => {
-        // Using simple classes for Tailwind to handle dark/light
         switch (level) {
-            case 1: return "bg-[#9be9a8] dark:bg-[#0e4429]";
-            case 2: return "bg-[#40c463] dark:bg-[#006d32]";
-            case 3: return "bg-[#30a14e] dark:bg-[#26a641]";
-            case 4: return "bg-[#216e39] dark:bg-[#39d353]";
-            default: return "bg-[#ebedf0] dark:bg-[#161b22]";
+            case 1: return "bg-highlight/20 dark:bg-highlight/15";
+            case 2: return "bg-highlight/40 dark:bg-highlight/30";
+            case 3: return "bg-highlight/65 dark:bg-highlight/55";
+            case 4: return "bg-highlight/90 dark:bg-highlight/80";
+            default: return "bg-secondary dark:bg-secondary";
         }
     };
 
@@ -115,7 +114,7 @@ export function GitHubContributionGraph({ username }: { username: string }) {
                 <span className="font-medium text-foreground">{total.toLocaleString()}</span> contributions in the last year
             </div>
 
-            <div className="border border-border/50 rounded-xl p-4 bg-card/50 overflow-x-auto scrollbar-hide">
+            <div className="border border-border rounded-xl p-4 bg-card/30 overflow-x-auto scrollbar-hide">
                 <div className="flex gap-1 min-w-max">
                     {weeks.map((week, weekIndex) => (
                         <div key={weekIndex} className="flex flex-col gap-1">
@@ -138,11 +137,11 @@ export function GitHubContributionGraph({ username }: { username: string }) {
                 <div className="flex items-center justify-end gap-2 mt-4 text-xs text-muted-foreground">
                     <span>Less</span>
                     <div className="flex gap-1">
-                        <div className="w-2.5 h-2.5 rounded-[2px] bg-[#ebedf0] dark:bg-[#161b22]" />
-                        <div className="w-2.5 h-2.5 rounded-[2px] bg-[#9be9a8] dark:bg-[#0e4429]" />
-                        <div className="w-2.5 h-2.5 rounded-[2px] bg-[#40c463] dark:bg-[#006d32]" />
-                        <div className="w-2.5 h-2.5 rounded-[2px] bg-[#30a14e] dark:bg-[#26a641]" />
-                        <div className="w-2.5 h-2.5 rounded-[2px] bg-[#216e39] dark:bg-[#39d353]" />
+                        <div className="w-2.5 h-2.5 rounded-[2px] bg-secondary" />
+                        <div className="w-2.5 h-2.5 rounded-[2px] bg-highlight/20" />
+                        <div className="w-2.5 h-2.5 rounded-[2px] bg-highlight/40" />
+                        <div className="w-2.5 h-2.5 rounded-[2px] bg-highlight/65" />
+                        <div className="w-2.5 h-2.5 rounded-[2px] bg-highlight/90" />
                     </div>
                     <span>More</span>
                 </div>
