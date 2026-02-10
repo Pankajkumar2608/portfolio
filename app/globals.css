@@ -29,6 +29,7 @@
   --input: #e2dfda;
   --ring: #a8a29e;
   --highlight: #c8956c;
+  --highlight-glow: rgba(200, 149, 108, 0.04);
 }
 
 .dark {
@@ -51,6 +52,7 @@
   --input: #262626;
   --ring: #57534e;
   --highlight: #d4a373;
+  --highlight-glow: rgba(212, 163, 115, 0.06);
 }
 
 @theme inline {

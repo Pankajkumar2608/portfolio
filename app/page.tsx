@@ -5,10 +5,12 @@ import { Projects } from "@/components/projects";
 import { GitHubActivity } from "@/components/github-activity-section";
 import { Direction } from "@/components/direction";
 import { SiteFooter } from "@/components/site-footer";
+import { CursorGlow } from "@/components/cursor-glow";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
+      <CursorGlow />
       <Nav />
       <main className="max-w-2xl mx-auto px-6 pt-36 pb-24">
         <Hero />

@@ -44,8 +44,11 @@ export function Direction() {
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
         {directions.map((item) => (
-          <div key={item.title} className="group space-y-3">
-            <div className="w-10 h-10 rounded-lg bg-highlight/10 flex items-center justify-center text-highlight">
+          <div
+            key={item.title}
+            className="group space-y-3 p-4 -m-4 rounded-xl transition-colors duration-300 hover:bg-card"
+          >
+            <div className="w-10 h-10 rounded-lg bg-highlight/10 flex items-center justify-center text-highlight transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
               {item.icon}
             </div>
             <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>

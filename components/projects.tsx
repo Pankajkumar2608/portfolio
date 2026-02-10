@@ -1,4 +1,7 @@
+"use client";
+
 import { SectionHeading } from "@/components/experience";
+import { useTilt } from "@/hooks/use-tilt";
 
 const featured = {
   title: "Findable",
@@ -64,7 +67,22 @@ export function Projects() {
       <SectionHeading>Selected Projects</SectionHeading>
 
       {/* Featured project */}
-      <article className="p-6 sm:p-8 rounded-xl border border-border bg-card hover:border-highlight/30 transition-all duration-300 mb-6 group">
+      <FeaturedCard />
+    </section>
+  );
+}
+
+function FeaturedCard() {
+  const tilt = useTilt<HTMLElement>(4);
+  return (
+    <>
+      <article
+        ref={tilt.ref}
+        onMouseMove={tilt.onMouseMove}
+        onMouseLeave={tilt.onMouseLeave}
+        className="p-6 sm:p-8 rounded-xl border border-border bg-card hover:border-highlight/30 transition-[border-color,box-shadow] duration-300 mb-6 group will-change-transform hover:shadow-lg hover:shadow-highlight/5"
+        style={{ transition: "transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s" }}
+      >
         <div className="flex items-start justify-between gap-4 mb-5">
           <div>
             <div className="flex items-center gap-3 mb-1">
@@ -102,49 +120,63 @@ export function Projects() {
       {/* Project grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {projects.map((project) => (
-          <article
-            key={project.title}
-            className="group p-5 sm:p-6 rounded-xl border border-border bg-card/50 hover:bg-card hover:border-foreground/10 transition-all duration-300 flex flex-col"
-          >
-            <div className="flex items-start justify-between gap-3 mb-3">
-              <h3 className="font-medium text-foreground">{project.title}</h3>
-              {project.url ? (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="shrink-0 p-1.5 text-muted-foreground hover:text-foreground rounded-md hover:bg-accent transition-all"
-                  aria-label={`Visit ${project.title}`}
-                >
-                  <ArrowUpRight />
-                </a>
-              ) : project.status ? (
-                <span className="shrink-0 flex items-center gap-1.5 text-[10px] px-2.5 py-0.5 rounded-full bg-highlight/10 text-highlight border border-highlight/20 font-medium">
-                  <span className="w-1.5 h-1.5 bg-highlight rounded-full animate-pulse" />
-                  {project.status}
-                </span>
-              ) : project.date ? (
-                <span className="shrink-0 text-[11px] text-muted-foreground/60 font-mono">
-                  {project.date}
-                </span>
-              ) : null}
-            </div>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-5 flex-grow">
-              {project.description}
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {project.stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-2 py-0.5 text-[10px] font-medium rounded bg-secondary/60 text-muted-foreground"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </article>
+          <ProjectCard key={project.title} project={project} />
         ))}
       </div>
-    </section>
+    </>
+  );
+}
+
+function ProjectCard({
+  project,
+}: {
+  project: (typeof projects)[number];
+}) {
+  const tilt = useTilt<HTMLElement>(6);
+  return (
+    <article
+      ref={tilt.ref}
+      onMouseMove={tilt.onMouseMove}
+      onMouseLeave={tilt.onMouseLeave}
+      className="group p-5 sm:p-6 rounded-xl border border-border bg-card/50 hover:bg-card hover:border-foreground/10 transition-[border-color,background-color] duration-300 flex flex-col will-change-transform"
+      style={{ transition: "transform 0.15s ease-out, border-color 0.3s, background-color 0.3s" }}
+    >
+      <div className="flex items-start justify-between gap-3 mb-3">
+        <h3 className="font-medium text-foreground">{project.title}</h3>
+        {project.url ? (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 p-1.5 text-muted-foreground hover:text-foreground rounded-md hover:bg-accent transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 duration-200"
+            aria-label={`Visit ${project.title}`}
+          >
+            <ArrowUpRight />
+          </a>
+        ) : project.status ? (
+          <span className="shrink-0 flex items-center gap-1.5 text-[10px] px-2.5 py-0.5 rounded-full bg-highlight/10 text-highlight border border-highlight/20 font-medium">
+            <span className="w-1.5 h-1.5 bg-highlight rounded-full animate-pulse" />
+            {project.status}
+          </span>
+        ) : project.date ? (
+          <span className="shrink-0 text-[11px] text-muted-foreground/60 font-mono">
+            {project.date}
+          </span>
+        ) : null}
+      </div>
+      <p className="text-muted-foreground text-sm leading-relaxed mb-5 flex-grow">
+        {project.description}
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {project.stack.map((tech) => (
+          <span
+            key={tech}
+            className="px-2 py-0.5 text-[10px] font-medium rounded bg-secondary/60 text-muted-foreground"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </article>
   );
 }
