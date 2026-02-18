@@ -5,6 +5,9 @@ export default function Blogs() {
     return (
       <>
         <Nav />
+        <div className="justify">
+
+        </div>
       </>
     );
 }
