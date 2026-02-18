@@ -87,7 +87,6 @@ const skillGroups = [
       { name: "React", color: "#61dafb" },
       { name: "Next.js", color: "#888" },
       { name: "Tailwind CSS", color: "#06b6d4" },
-      { name: "Three.js", color: "#049ef4" },
     ],
   },
   {
@@ -118,6 +117,7 @@ const skillGroups = [
     ),
     skills: [
       { name: "PostgreSQL", color: "#4169e1" },
+      { name: "MongoDB", color: "#4db33d" },
       { name: "Redis", color: "#dc382d" },
       { name: "AWS", color: "#ff9900" },
       { name: "GCP", color: "#4285f4" },

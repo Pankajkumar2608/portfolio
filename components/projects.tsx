@@ -19,8 +19,13 @@ const projects = [
   {
     title: "Motivation Kaksha",
     tagline: "50k+ users",
-    description:
-      "JEE college prediction platform catering to 50k+ active users. High-performance REST API with Redis caching layer.",
+    description: (
+      <>
+        JEE college prediction platform catering to{" "}
+        <span className="font-bold">50k+ active users</span>. High-performance
+        REST API with Redis caching layer (Working on mobile app).
+      </>
+    ),
     url: "https://motivationkaksha.in",
     stack: ["Express", "Redis", "Node.js"],
     featured: false,
@@ -47,12 +52,12 @@ const projects = [
     status: "Building",
   },
   {
-    title: "DM Automation",
-    tagline: "Creator engagement tool",
+    title: "Kat n Trim",
+    tagline: "Youtube video trimmer",
     description:
       "Automated engagement tool for creators. Real-time webhook processing for Instagram Direct Messages.",
-    url: null,
-    stack: ["Webhooks", "Instagram API", "Node.js"],
+    url: "https://v0-kat-ntrim-project.vercel.app/",
+    stack: ["ytdl", "Youtube API", "Node.js"],
     featured: false,
     status: "Live",
   },
@@ -157,7 +162,7 @@ function FeaturedProject({ project }: { project: (typeof projects)[0] }) {
               <h3 className="text-xl font-bold text-foreground">{project.title}</h3>
               <StatusBadge status={project.status} />
             </div>
-            <p className="text-sm text-muted-foreground">{project.tagline}</p>
+            <p className="text-sm font-semibold text-muted-foreground">{project.tagline}</p>
           </div>
           {project.url && (
             <a
@@ -196,7 +201,10 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
       onMouseMove={tilt.onMouseMove}
       onMouseLeave={tilt.onMouseLeave}
       className="group h-full p-5 sm:p-6 rounded-xl border border-border bg-card/50 hover:bg-card hover:border-foreground/10 transition-[border-color,background-color] duration-300 flex flex-col will-change-transform"
-      style={{ transition: "transform 0.15s ease-out, border-color 0.3s, background-color 0.3s" }}
+      style={{
+        transition:
+          "transform 0.15s ease-out, border-color 0.3s, background-color 0.3s",
+      }}
     >
       <div className="flex items-start justify-between gap-3 mb-1.5">
         <h3 className="font-semibold text-foreground">{project.title}</h3>
@@ -205,17 +213,18 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 p-1.5 text-muted-foreground hover:text-foreground rounded-md hover:bg-accent transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            aria-label={`Visit ${project.title}`}
+            className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-medium bg-foreground text-background rounded-lg hover:opacity-90 transition-all duration-200 group-hover:gap-2"
           >
-            <ArrowUpRight />
+            Visit <ArrowUpRight />
           </a>
         ) : (
           <StatusBadge status={project.status} />
         )}
       </div>
-      <p className="text-xs text-muted-foreground/60 mb-3">{project.tagline}</p>
-      <p className="text-muted-foreground text-sm leading-relaxed mb-5 flex-grow">
+      <p className="text-xs font-semibold text-muted-foreground/60 mb-3">
+        {project.tagline}
+      </p>
+      <p className="text-muted-foreground text-sm leading-relaxed mb-5 grow">
         {project.description}
       </p>
       <div className="flex flex-wrap gap-1.5">

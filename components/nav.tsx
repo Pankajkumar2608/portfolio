@@ -6,10 +6,8 @@ import { useEffect, useState } from "react";
 
 const links = [
   { href: "#experience", label: "Work" },
+  { href: "/blogs", label: "Blogs" },
   { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
-  { href: "#github", label: "GitHub" },
-  { href: "#about", label: "About" },
 ];
 
 export function Nav() {
@@ -67,7 +65,7 @@ export function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className={`relative px-3 py-1.5 text-sm rounded-md transition-all duration-200 ${
+              className={`relative px-3 py-1.5 text-sm font-semibold rounded-md transition-all duration-200 ${
                 active === link.href
                   ? "text-foreground font-medium"
                   : "text-muted-foreground hover:text-foreground"
