@@ -132,7 +132,7 @@ export function Hero() {
             <Cursor />
           </h1>
           <p className="text-muted-foreground text-lg mt-1.5">
-            A Full Stack Developer.
+            A Software Engineer.
           </p>
         </div>
       </div>
