@@ -10,9 +10,23 @@ const experiences = [
     role: "Founding Engineer",
     period: "Apr 2024 -- Present",
     location: "Remote",
-    description:
-      "Migrated legacy HTML/CSS/JS to Next.js, improving performance by 40%. Deployed on AWS EC2, built REST APIs with Django and FastAPI. Implemented RAG-based AI system.",
-    tech: ["Next.js", "Django", "FastAPI", "AWS", "RAG", "PostgreSQL"],
+    highlights: [
+      "Built a multi-asset backtesting engine supporting advanced order management and years of historical market data",
+      "Designed backend services and APIs powering trading, analytics, and quantitative research workflows",
+      "Managed VPS infrastructure, Docker deployments, AWS services, and Cloudflare networking",
+      "Developed AI-powered research and strategy analysis tools for traders",
+    ],
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "Python",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+      "Cloudflare",
+      "WebSockets",
+    ],
     current: true,
   },
   {
@@ -20,8 +34,10 @@ const experiences = [
     role: "Frontend Developer Intern",
     period: "Jan 2024 -- Mar 2024",
     location: "Remote",
-    description:
-      "Built responsive UI components with Next.js and Tailwind CSS. Translated design mockups into maintainable frontend code.",
+    highlights: [
+      "Built responsive UI components using Next.js and Tailwind CSS",
+      "Translated Figma designs into production-ready frontend code",
+    ],
     tech: ["Next.js", "Tailwind CSS", "TypeScript", "Figma"],
     current: false,
   },
@@ -81,58 +97,64 @@ export function Experience() {
         {experiences.map((exp, i) => (
           <Reveal key={i} delay={0.1 * (i + 1)}>
             <SpotlightCard className="group rounded-xl border border-border bg-card/50 hover:bg-card hover:border-highlight/20 transition-all duration-300">
-              <div className="relative p-5 sm:p-6">
-                {/* Top row */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-highlight/10 flex items-center justify-center text-sm font-bold text-highlight shrink-0 border border-highlight/15 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
+              <div className="relative p-6">
+                <div className="flex flex-col sm:flex-row sm:justify-between gap-4 mb-5">
+                  <div className="flex gap-4">
+                    {/* <div className="w-11 h-11 rounded-xl bg-highlight/10 flex items-center justify-center border border-highlight/15 text-highlight font-bold shrink-0 transition-transform duration-300 group-hover:scale-110">
                       <ObfuscatedText
                         text={exp.company.charAt(0)}
-                        className="text-sm font-bold"
+                        className="font-bold"
                       />
-                    </div>
+                    </div> */}
+
                     <div>
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-semibold text-foreground flex items-center gap-2">
-                          <ObfuscatedText
-                            text={exp.company}
-                            className="font-semibold"
-                          />
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="font-semibold text-lg text-foreground">
+                          {exp.role}
                         </h3>
+
                         {exp.current && (
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-semibold rounded-full bg-highlight/10 text-highlight border border-highlight/20">
-                            <span className="relative flex h-1.5 w-1.5">
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded-full bg-highlight/10 text-highlight border border-highlight/20">
+                            <span className="relative flex h-2 w-2">
                               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-highlight opacity-75" />
-                              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-highlight" />
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-highlight" />
                             </span>
-                            Working
+                            Building
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-muted-foreground">
-                        {exp.role}
+
+                      <p className="text-sm text-muted-foreground mt-1">
+                        <ObfuscatedText text={exp.company} />
                       </p>
                     </div>
                   </div>
-                  <div className="text-xs text-muted-foreground/60 font-mono sm:text-right">
+
+                  <div className="text-xs text-muted-foreground/70 font-mono sm:text-right">
                     <div>{exp.period}</div>
                     <div>{exp.location}</div>
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4 max-w-2xl">
-                  {exp.description}
-                </p>
-
-                {/* Tech tags */}
-                <div className="flex flex-wrap gap-1.5">
-                  {exp.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-secondary text-muted-foreground border border-border/40 transition-colors duration-200 hover:text-foreground hover:border-border"
+                <ul className="space-y-3 mb-5">
+                  {exp.highlights.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed"
                     >
-                      {t}
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-highlight shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-2">
+                  {exp.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium bg-secondary border border-border/50 text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {tech}
                     </span>
                   ))}
                 </div>

@@ -50,7 +50,7 @@ export function Nav() {
       }`}
     >
       <nav className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-        <a href="#" className="block shrink-0 group" aria-label="Back to top">
+        <a href="/" className="block shrink-0 group" aria-label="Back to top">
           <Image
             src="/avatar.jpg"
             alt="Pankaj Kumar"

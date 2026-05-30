@@ -23,7 +23,7 @@ export function CursorGlow() {
     };
 
     const tick = () => {
-      el.style.background = `radial-gradient(600px circle at ${mx}px ${my}px, var(--highlight-glow, rgba(200,149,108,0.04)), transparent 60%)`;
+      el.style.background = `radial-gradient(50px circle at ${mx}px ${my}px, var(--highlight-glow, rgba(200,149,108,0.04)), transparent 60%)`;
       raf = requestAnimationFrame(tick);
     };
 
