@@ -1,68 +1,74 @@
 "use client";
 
 import { useTheme } from "@/components/theme-provider";
-import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export function ThemeToggle() {
-    const { theme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-    if (!mounted) {
-        return <div className="w-9 h-9" />;
+  if (!mounted) {
+    return <div className="w-9 h-9" />;
+  }
+
+  const isDark =
+    theme === "dark" ||
+    (theme === "system" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+  const handleToggle = async () => {
+    const newTheme = isDark ? "light" : "dark";
+
+    if (!document.startViewTransition) {
+      setTheme(newTheme);
+      return;
     }
 
-    const isDark = theme === "dark" ||
-        (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const rect = buttonRef.current?.getBoundingClientRect();
 
-    return (
-        <button
-            onClick={() => setTheme(isDark ? "light" : "dark")}
-            className="w-9 h-9 flex items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors duration-200"
-            aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
-        >
-            {isDark ? (
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="transition-transform duration-200"
-                >
-                    <circle cx="12" cy="12" r="4" />
-                    <path d="M12 2v2" />
-                    <path d="M12 20v2" />
-                    <path d="m4.93 4.93 1.41 1.41" />
-                    <path d="m17.66 17.66 1.41 1.41" />
-                    <path d="M2 12h2" />
-                    <path d="M20 12h2" />
-                    <path d="m6.34 17.66-1.41 1.41" />
-                    <path d="m19.07 4.93-1.41 1.41" />
-                </svg>
-            ) : (
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="transition-transform duration-200"
-                >
-                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-                </svg>
-            )}
-        </button>
+    const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
+
+    const y = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
+
+    const transition = document.startViewTransition(() => {
+      setTheme(newTheme);
+    });
+
+    await transition.ready;
+
+    const radius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
     );
+
+    document.documentElement.animate(
+      {
+        clipPath: [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${radius}px at ${x}px ${y}px)`,
+        ],
+      },
+      {
+        duration: 700,
+        easing: "cubic-bezier(0.87,0,0.13,1)",
+        pseudoElement: "::view-transition-new(root)",
+      },
+    );
+  };
+
+  return (
+    <button
+      ref={buttonRef}
+      onClick={handleToggle}
+      className="w-9 h-9 flex items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors duration-200"
+    >
+      {isDark ? <Sun size={18} /> : <Moon size={18} />}
+    </button>
+  );
 }

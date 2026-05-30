@@ -8,12 +8,14 @@ import { Direction } from "@/components/direction";
 import { ContactCTA } from "@/components/contact-cta";
 import { SiteFooter } from "@/components/site-footer";
 import { CursorGlow } from "@/components/cursor-glow";
+import { Countdown } from "@/components/timeleft";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <CursorGlow />
       <Nav />
+
       <main className="max-w-4xl mx-auto px-6 pt-32 pb-24">
         <Hero />
         <Experience />
@@ -22,6 +24,7 @@ export default function Home() {
         <GitHubActivity />
         <Direction />
         <ContactCTA />
+        {/* <Countdown /> */}
         <SiteFooter />
       </main>
     </div>
