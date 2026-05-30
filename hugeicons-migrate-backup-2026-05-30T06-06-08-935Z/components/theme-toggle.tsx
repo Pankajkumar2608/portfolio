@@ -1,8 +1,7 @@
 "use client";
 
-import { HugeiconsIcon } from "@hugeicons/react";
-import { MoonIcon, Sun01Icon } from "@hugeicons/core-free-icons";
 import { useTheme } from "@/components/theme-provider";
+import { Moon, Sun } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export function ThemeToggle() {
@@ -69,7 +68,7 @@ export function ThemeToggle() {
       onClick={handleToggle}
       className="w-9 h-9 flex items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors duration-200"
     >
-      {isDark ? <HugeiconsIcon icon={Sun01Icon} size={18} /> : <HugeiconsIcon icon={MoonIcon} size={18} />}
+      {isDark ? <Sun size={18} /> : <Moon size={18} />}
     </button>
   );
 }

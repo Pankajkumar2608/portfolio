@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hugeicons Migration Report</title>
+  <style>
+    :root {
+      --primary: #afe67f;
+      --primary-dark: #8bc34a;
+      --primary-light: #d4f4b4;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --bg: #ffffff;
+      --bg-card: #f8fafc;
+      --bg-hover: #f1f5f9;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .header-logo {
+      margin-bottom: 1.5rem;
+    }
+    
+    .header-logo img {
+      height: 28px;
+    }
+    
+    .title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #141812;
+      margin-bottom: 0.5rem;
+    }
+    
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-left: 0.5rem;
+    }
+    
+    .badge-success {
+      background: var(--primary-light);
+      color: #3d6b1c;
+    }
+    
+    .badge-warning {
+      background: rgba(245, 158, 11, 0.15);
+      color: #b45309;
+    }
+    
+    .badge-danger {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--danger);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    
+    .stat-card {
+      background: var(--bg-card);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    .stat-value {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #3d6b1c;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .section {
+      margin-bottom: 3rem;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text);
+    }
+    
+    .section-title svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: var(--primary-dark);
+    }
+    
+    .card {
+      background: var(--bg-card);
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    .file-list {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    
+    .file-item {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.15s;
+    }
+    
+    .file-item:last-child {
+      border-bottom: none;
+    }
+    
+    .file-item:hover {
+      background: var(--bg-hover);
+    }
+    
+    .file-path {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      font-size: 0.875rem;
+      color: var(--text);
+    }
+    
+    .file-changes {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      background: var(--primary-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-weight: 500;
+      color: #3d6b1c;
+    }
+    
+    .icon-list {
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+    
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    
+    .icon-item {
+      background: var(--bg-hover);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1px solid var(--border);
+    }
+    
+    .icon-old {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: #fff;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.375rem;
+      border: 1px solid var(--border);
+    }
+    
+    .icon-arrow {
+      color: var(--primary-dark);
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
+    
+    .icon-new {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      font-size: 0.8rem;
+      color: #3d6b1c;
+      background: var(--primary-light);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+    }
+    
+    .info-list {
+      padding: 1.5rem;
+    }
+    
+    .info-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    
+    .info-item:last-child {
+      border-bottom: none;
+    }
+    
+    .info-label {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+    
+    .info-value {
+      font-weight: 500;
+      color: var(--text);
+      word-break: break-all;
+    }
+    
+    .error-list {
+      padding: 1.5rem;
+    }
+    
+    .error-item {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .error-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .error-file {
+      font-weight: 600;
+      color: var(--danger);
+      margin-bottom: 0.25rem;
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      font-size: 0.875rem;
+    }
+    
+    .error-message {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    
+    footer {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    
+    footer a {
+      color: #3d6b1c;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    .empty-state {
+      padding: 3rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    
+    .hugeicons-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #8bc34a, #afe67f);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .stat-value {
+        font-size: 2rem;
+      }
+      
+      .icon-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-logo">
+        <img src="https://hugeicons.com/assets/logo.svg" alt="Hugeicons" />
+      </div>
+      <h1 class="title">Hugeicons Migration Report</h1>
+      <p class="subtitle">
+        Migration Complete
+        <span class="badge badge-success">Applied</span>
+      </p>
+    </header>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">2</div>
+        <div class="stat-label">Files Modified</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Icons Migrated</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Unique Icons</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color: #3d6b1c">0</div>
+        <div class="stat-label">Errors</div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="section">
+      <h2 class="section-title">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+        Modified Files
+      </h2>
+      <div class="card">
+        
+        <div class="file-list">
+          
+          <div class="file-item">
+            <span class="file-path">components/theme-toggle.tsx</span>
+            <span class="file-changes">4 changes</span>
+          </div>
+          
+          <div class="file-item">
+            <span class="file-path">app/blogs/[slug]/page.tsx</span>
+            <span class="file-changes">3 changes</span>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2 class="section-title">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+        Icon Mappings
+      </h2>
+      <div class="card">
+        
+        <div class="icon-list">
+          <div class="icon-grid">
+            
+            <div class="icon-item">
+              <span class="icon-old">ArrowLeft</span>
+              <span class="icon-arrow">→</span>
+              <span class="icon-new">ArrowLeft01Icon</span>
+            </div>
+            
+            <div class="icon-item">
+              <span class="icon-old">Moon</span>
+              <span class="icon-arrow">→</span>
+              <span class="icon-new">MoonIcon</span>
+            </div>
+            
+            <div class="icon-item">
+              <span class="icon-old">Sun</span>
+              <span class="icon-arrow">→</span>
+              <span class="icon-new">Sun01Icon</span>
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    
+    
+    <div class="section">
+      <h2 class="section-title">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        Migration Details
+      </h2>
+      <div class="card">
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-label">Project</span>
+            <span class="info-value">C:\Users\ASUS\Desktop\portfolio</span>
+          </div>
+          
+          <div class="info-item">
+            <span class="info-label">From</span>
+            <span class="info-value">lucide-react</span>
+          </div>
+          
+          <div class="info-item">
+            <span class="info-label">To Style</span>
+            <span class="info-value">stroke</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Timestamp</span>
+            <span class="info-value">30/5/2026, 11:36:09 am</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Mode</span>
+            <span class="info-value">Write Mode</span>
+          </div>
+          
+          <div class="info-item">
+            <span class="info-label">Backup</span>
+            <span class="info-value">hugeicons-migrate-backup-2026-05-30T06-06-08-935Z</span>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <p>Generated by <a href="https://hugeicons.com" target="_blank">Hugeicons Migration Tool</a></p>
+      <p style="margin-top: 0.5rem">Need help? Visit <a href="https://hugeicons.com/docs" target="_blank">documentation</a></p>
+    </footer>
+  </div>
+</body>
+</html>

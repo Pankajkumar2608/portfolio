@@ -1,11 +1,10 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import { blogs } from "@/lib/blogs";
 import { notFound } from "next/navigation";
 import { Nav } from "@/components/nav";
 import { SiteFooter } from "@/components/site-footer";
 import { CursorGlow } from "@/components/cursor-glow";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { ScrollProgress } from "@/components/scroll-progress";
 
 export async function generateStaticParams() {
@@ -40,7 +39,7 @@ export default async function BlogPostPage({
             href="/blogs"
             className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-8 relative z-10"
           >
-            <HugeiconsIcon icon={ArrowLeft01Icon} className="mr-2 h-4 w-4" />
+            <ArrowLeft className="mr-2 h-4 w-4" />
             Back to blogs
           </Link>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-foreground mb-6 leading-tight tracking-tight relative z-10">
