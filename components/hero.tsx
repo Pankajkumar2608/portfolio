@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useCallback, useRef, useEffect } from "react";
 import { Github, Linkedin, NewTwitterIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import HeroButtons from "./ui/pbutton";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -159,29 +160,8 @@ export function Hero() {
         <strong className="text-foreground font-medium">low-level architecture</strong>.
       </p>
 
-      {/* CTA buttons */}
-      <div className="flex flex-wrap items-center gap-3 mb-8 fade-in fade-in-delay-3">
-        <a
-          href="mailto:pankajjaat2608@gmail.com"
-          className="group inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium bg-foreground text-background rounded-lg hover:opacity-90 transition-all duration-200"
-        >
-          Get in touch
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transition-transform duration-200 group-hover:translate-x-0.5">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
-        <a
-          href="https://github.com/pankajkumar2608"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium border border-border rounded-lg text-foreground hover:bg-accent transition-all duration-200"
-        >
-          View GitHub
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-            <path d="M7 17L17 7M17 7H7M17 7V17" />
-          </svg>
-        </a>
-      </div>
+      <HeroButtons />
+      
 
       {/* Social icons */}
       <div className="flex items-center gap-1 fade-in fade-in-delay-4">
