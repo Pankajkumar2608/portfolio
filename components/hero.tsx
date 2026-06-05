@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useCallback, useRef, useEffect } from "react";
 import { Github, Linkedin, NewTwitterIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import HeroButtons from "./ui/pbutton";
+import { GetInTouchButton, ViewGitHubButton } from "./ui/pbutton";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -160,7 +160,10 @@ export function Hero() {
         <strong className="text-foreground font-medium">low-level architecture</strong>.
       </p>
 
-      <HeroButtons />
+      <div className="flex flex-wrap items-center gap-3 mb-8 fade-in fade-in-delay-3">  
+        <GetInTouchButton/>
+        <ViewGitHubButton/>
+      </div>
       
 
       {/* Social icons */}

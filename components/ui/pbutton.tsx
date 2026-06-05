@@ -1,9 +1,11 @@
 "use client";
 
+import { Linkedin, Linkedin01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useRef, MouseEvent } from "react";
 
 /* ─── Magnetic shimmer primary button ─── */
-function GetInTouchButton() {
+export function GetInTouchButton() {
   const btnRef = useRef<HTMLAnchorElement>(null);
 
   const handleMouseMove = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -107,7 +109,7 @@ function GetInTouchButton() {
 }
 
 /* ─── Ghost fill-sweep GitHub button ─── */
-function ViewGitHubButton() {
+export function ViewGitHubButton() {
   return (
     <a
       href="https://github.com/pankajkumar2608"
@@ -118,7 +120,7 @@ function ViewGitHubButton() {
       {/* sweep fill on hover */}
       <span className="sweep" />
 
-      <span className="relative z-10 flex items-center gap-2">
+      <span className="relative z-10 flex items-center gap-2 text-foreground">
         {/* GitHub icon */}
         <svg
           width="15"
@@ -175,12 +177,62 @@ function ViewGitHubButton() {
   );
 }
 
-/* ─── Export ─── */
-export default function HeroButtons() {
+export function ViewLinkedinButton() {
   return (
-    <div className="flex flex-wrap items-center gap-3 mb-8 fade-in fade-in-delay-3">
-      <GetInTouchButton />
-      <ViewGitHubButton />
-    </div>
+    <a
+      href="https://www.linkedin.com/in/pankaj-jaat/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="github-btn group relative inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg overflow-hidden"
+    >
+      {/* sweep fill on hover */}
+      <span className="sweep" />
+
+      <span className="relative z-10 text-foreground flex items-center gap-2">
+        {/* GitHub icon */}
+        <HugeiconsIcon size={18} icon={Linkedin01Icon} />
+        Linkedin
+        <svg
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        >
+          <path d="M7 17L17 7M17 7H7M17 7V17" />
+        </svg>
+      </span>
+
+      <style>{`
+        .github-btn {
+          border: 1px solid rgba(255,255,255,0.12);
+          color: rgba(255,255,255,0.75);
+          background: transparent;
+          transition: color 0.3s, border-color 0.3s;
+        }
+
+        .github-btn:hover {
+          color: rgba(255,255,255,1);
+          border-color: rgba(255,255,255,0.25);
+        }
+
+        /* fill sweep */
+        .github-btn .sweep {
+          position: absolute;
+          inset: 0;
+          background: rgba(255,255,255,0.06);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+          border-radius: inherit;
+        }
+
+        .github-btn:hover .sweep {
+          transform: scaleX(1);
+        }
+      `}</style>
+    </a>
   );
 }

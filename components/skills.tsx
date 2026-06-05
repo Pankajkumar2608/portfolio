@@ -70,8 +70,7 @@ const skillGroups = [
       { name: "JavaScript", color: "#f7df1e" },
       { name: "Python", color: "#3776ab" },
       { name: "Rust", color: "#ce422b" },
-      { name: "Kotlin", color: "#7f52ff" },
-      { name: "C", color: "#555555" },
+      { name: "Go", color: "#555555" },
     ],
   },
   {
