@@ -3,16 +3,20 @@
 import Image from "next/image";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "#experience", label: "Work" },
+  { href: "/#experience", label: "Work" },
   { href: "/blogs", label: "Blogs" },
   { href: "#projects", label: "Projects" },
 ];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("");
+  const [activeHash, setActiveHash] = useState("");
+  const pathname = usePathname();
+
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -20,26 +24,44 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Track active section
+  // Only observe hash sections when on the home page
   useEffect(() => {
-    const ids = links.map((l) => l.href.replace("#", ""));
+    if (!isHome) return;
+
+    const hashLinks = links.filter((l) => l.href.startsWith("#"));
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setActive(`#${entry.target.id}`);
+            setActiveHash(`#${entry.target.id}`);
           }
         }
       },
-      { rootMargin: "-30% 0px -60% 0px" }
+      { rootMargin: "-30% 0px -60% 0px" },
     );
 
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
+    hashLinks.forEach(({ href }) => {
+      const el = document.getElementById(href.replace("#", ""));
       if (el) observer.observe(el);
     });
+
     return () => observer.disconnect();
-  }, []);
+  }, [isHome]);
+
+  function isActive(href: string) {
+    if (href.startsWith("#")) {
+      return isHome && activeHash === href;
+    }
+    return pathname === href || pathname.startsWith(href + "/");
+  }
+
+  function resolveHref(href: string) {
+    // If it's a hash link and we're not on home, redirect to home + hash
+    if (href.startsWith("#") && !isHome) {
+      return `/${href}`;
+    }
+    return href;
+  }
 
   return (
     <header
@@ -64,14 +86,14 @@ export function Nav() {
           {links.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={resolveHref(link.href)}
               className={`relative px-3 py-1.5 text-sm font-semibold rounded-md transition-all duration-200 ${
-                active === link.href
+                isActive(link.href)
                   ? "text-foreground font-medium"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              {active === link.href && (
+              {isActive(link.href) && (
                 <span
                   className="absolute inset-0 bg-accent rounded-md"
                   style={{
