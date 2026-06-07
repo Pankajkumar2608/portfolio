@@ -7,37 +7,48 @@ import { useRef, useCallback } from "react";
 
 const projects = [
   {
-    title: "Findable",
-    tagline: "Anonymous recovery system",
-    description:
-      "A system for tracking and recovering lost items. When someone finds your item, they scan a QR code, send a message, and you get notified. Privacy-focused architecture.",
-    url: "https://findable.itzpankaj.site",
-    stack: ["Next.js", "PostgreSQL", "Email Wrappers"],
+    title: "Motivation Kaksha",
+    tagline: "50k+ active users",
+    description: (
+      <>
+        JEE college prediction platform serving{" "}
+        <span className="font-bold">50,000+ active users</span>. Built a
+        high-performance REST API with a Redis caching layer to handle
+        concurrent prediction requests at scale. Mobile app in progress.
+      </>
+    ),
+    url: "https://motivationkaksha.in",
+    stack: ["Node.js", "Express", "Redis", "PostgreSQL"],
     featured: true,
     status: "Live",
   },
   {
-    title: "Motivation Kaksha",
-    tagline: "50k+ users",
-    description: (
-      <>
-        JEE college prediction platform catering to{" "}
-        <span className="font-bold">50k+ active users</span>. High-performance
-        REST API with Redis caching layer (Working on mobile app).
-      </>
-    ),
-    url: "https://motivationkaksha.in",
-    stack: ["Express", "Redis", "Node.js"],
+    title: "Retainly",
+    tagline: "Behavioral email automation",
+    description:
+      "Loops.so — but with intent scoring. Tracks user behavior, builds a behavioral fingerprint per user, and sends emails from your real inbox only when the algo decides the timing is right. Anti-spam scoring prevents over-mailing; goes beyond pure event triggers.",
+    url: "https://retainly.us",
+    stack: ["Next.js", "TypeScript", "Gmail API", "Amazon SES"],
     featured: false,
     status: "Live",
   },
   {
-    title: "Book Reader",
-    tagline: "PDF reader app",
+    title: "Findable",
+    tagline: "Anonymous recovery system",
     description:
-      "A simple book reader app built with Next.js, Tailwind CSS, TypeScript and Pdf-libs.",
-    url: "https://reader.itzpankaj.site",
-    stack: ["Next.js", "Tailwind CSS", "TypeScript"],
+      "Lost-item recovery via QR codes. Finder scans, sends a message, owner gets notified — no personal info exposed on either side. Privacy-first architecture with zero account requirement for finders.",
+    url: "https://findable.itzpankaj.site",
+    stack: ["Next.js", "PostgreSQL", "Email Wrappers"],
+    featured: false,
+    status: "Live",
+  },
+  {
+    title: "R2Stream",
+    tagline: "Self-hosted music streaming",
+    description:
+      "Full music streaming pipeline: JioSaavn URL resolver + yt-dlp fallback feed audio into Cloudflare R2. A Worker API handles catalog, search, and range-aware streaming. Manifest-driven — no database needed.",
+    url: "https://r2-stream.vercel.app",
+    stack: ["Cloudflare R2", "Workers", "yt-dlp", "Next.js"],
     featured: false,
     status: "Live",
   },
@@ -45,27 +56,24 @@ const projects = [
     title: "Kaksha AI",
     tagline: "Educational assistant",
     description:
-      "RAG-based educational assistant. Explains complex problems step-by-step using context-aware LLM agents.",
+      "RAG-based educational assistant. Explains complex problems step-by-step using context-aware LLM agents with retrieval over course material.",
     url: null,
     stack: ["GenAI", "RAG", "Python"],
     featured: false,
     status: "Building",
   },
-  {
-    title: "Kat n Trim",
-    tagline: "Youtube video trimmer",
-    description:
-      "Automated engagement tool for creators. Real-time webhook processing for Instagram Direct Messages.",
-    url: "https://v0-kat-ntrim-project.vercel.app/",
-    stack: ["ytdl", "Youtube API", "Node.js"],
-    featured: false,
-    status: "Live",
-  },
 ];
 
 function ArrowUpRight() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+    >
       <path d="M7 17L17 7M17 7H7M17 7V17" />
     </svg>
   );
@@ -126,21 +134,23 @@ function FeaturedProject({ project }: { project: (typeof projects)[0] }) {
       el.style.setProperty("--mx", `${e.clientX - rect.left}px`);
       el.style.setProperty("--my", `${e.clientY - rect.top}px`);
     },
-    [tilt]
+    [tilt],
   );
 
   return (
     <article
       ref={(el) => {
         (tilt.ref as React.MutableRefObject<HTMLElement | null>).current = el;
-        (spotRef as React.MutableRefObject<HTMLDivElement | null>).current = el as HTMLDivElement | null;
+        (spotRef as React.MutableRefObject<HTMLDivElement | null>).current =
+          el as HTMLDivElement | null;
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={tilt.onMouseLeave}
       className="group relative overflow-hidden p-6 sm:p-8 rounded-xl border border-border bg-card hover:border-highlight/30 transition-[border-color,box-shadow] duration-300 will-change-transform hover:shadow-xl hover:shadow-highlight/5"
       style={
         {
-          transition: "transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s",
+          transition:
+            "transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s",
           "--mx": "50%",
           "--my": "50%",
         } as React.CSSProperties
@@ -150,7 +160,8 @@ function FeaturedProject({ project }: { project: (typeof projects)[0] }) {
       <div
         className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
-          background: "radial-gradient(500px circle at var(--mx) var(--my), var(--highlight-glow), transparent 60%)",
+          background:
+            "radial-gradient(500px circle at var(--mx) var(--my), var(--highlight-glow), transparent 60%)",
         }}
         aria-hidden="true"
       />
@@ -159,10 +170,14 @@ function FeaturedProject({ project }: { project: (typeof projects)[0] }) {
         <div className="flex items-start justify-between gap-4 mb-5">
           <div>
             <div className="flex items-center gap-3 mb-1.5">
-              <h3 className="text-xl font-bold text-foreground">{project.title}</h3>
+              <h3 className="text-xl font-bold text-foreground">
+                {project.title}
+              </h3>
               <StatusBadge status={project.status} />
             </div>
-            <p className="text-sm font-semibold text-muted-foreground">{project.tagline}</p>
+            <p className="text-sm font-semibold text-muted-foreground">
+              {project.tagline}
+            </p>
           </div>
           {project.url && (
             <a
